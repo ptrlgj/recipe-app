@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {useParams} from 'react-router-dom';
+import {useParams, Link} from 'react-router-dom';
 import styled from 'styled-components'
 
 function Cuisine() {
@@ -8,6 +8,7 @@ function Cuisine() {
     useEffect(()=>{
       getCuisine(params.cuisine)
     },[params.cuisine]);
+
     const getCuisine = async cuisineType => {
         const response = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&cuisine=${cuisineType}`);
         const data = await response.json();
@@ -17,8 +18,10 @@ function Cuisine() {
     <Grid>
       {cuisine.map(recipe =>{
         return <Card key={recipe.id}>
-          <img src={recipe.image} alt={recipe.title} />
-          <h4>{recipe.title}</h4>
+          <Link to={`/recipe/${recipe.id}`}>
+            <img src={recipe.image} alt={recipe.title} />
+            <h4>{recipe.title}</h4>
+          </Link>
         </Card>
       })}
     </Grid>

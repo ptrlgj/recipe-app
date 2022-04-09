@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {useParams} from 'react-router-dom'
+import {useParams, Link} from 'react-router-dom'
 import styled from 'styled-components'
 
 function Searched() {
@@ -8,7 +8,6 @@ function Searched() {
 
     useEffect(()=>{
         getSearched(params.search);
-        console.log("change")
     },[params.search])
     const getSearched = async searchedTerm => {
         const response = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&titleMatch=${searchedTerm}`);
@@ -18,11 +17,13 @@ function Searched() {
     return (
     <Grid>
         {
-            foundRecipes.map(recipe=>{
+            foundRecipes.map(recipe=>{ 
                 return (
                     <Card key={recipe.id}>
-                        <img src={recipe.image} alt={recipe.title} />
-                        <h4>{recipe.title}</h4>
+                        <Link to={`/recipe/${recipe.id}`}>
+                            <img src={recipe.image} alt={recipe.title} />
+                            <h4>{recipe.title}</h4>
+                        </Link>
                     </Card>
                 )
             })
