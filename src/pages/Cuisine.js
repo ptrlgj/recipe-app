@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {useParams, Link} from 'react-router-dom';
 import styled from 'styled-components'
+import {motion} from 'framer-motion'
 
 function Cuisine() {
     const [cuisine, setCuisine] = useState([]);
@@ -27,7 +28,7 @@ function Cuisine() {
     </Grid>
   )
 }
- const Grid = styled.div`
+ const Grid = styled.motion.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   grid-gap: 3rem;
