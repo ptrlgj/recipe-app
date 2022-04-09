@@ -3,15 +3,14 @@ import Home from './Home'
 import Cuisine from './Cuisine'
 import Category from '../components/Category'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import Searched from './Searched'
 function Pages() {
   return (
-    <BrowserRouter>
-        <Category />
-      <Routes>
-        <Route path="/" element={<Home />}/>
-        <Route path="/cuisine/:cuisine" element={<Cuisine />}/>
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+     <Route path="/" element={<Home />}/>
+     <Route path="/cuisine/:cuisine" element={<Cuisine />}/>
+     <Route path="/searched/:search" element={<Searched/>}/>
+    </Routes>
   )
 }
 
